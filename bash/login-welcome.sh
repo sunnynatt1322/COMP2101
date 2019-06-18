@@ -8,20 +8,26 @@
 # Improve this script by adding some time and day of the week information to the welcome message
 #   Use a format like this:
 #   It is HH:MM AM on weekday.
-
 ###############
 # Variables   #
 ###############
-name="$USER"
-date=$(date +'%I:%M %p')
+######for in
+
+titles=("Villager" "Natt" "ustad" "nattsaab" "Jatt" "pendu" "mustang" )
+
+#echo "$title=${titles[$title_index]}"
+title_index=$(($RANDOM % ${#titles[@]}))
+
+title=${titles[$title_index]}
+
 hostname=$(hostname)
+date=$(date +'%I:%M %p')
 weekday=$(date +%u)
 ###############
 # Main        #
 ###############
-cat <<EOF
-"Welcome to planet, "$hostname, $name!""
-EOF
+#cat <<EOF
+cowsay "Welcome to planet $hostname, "$title $USER!""
 if [ "$weekday" = "6" ] || [ "$weekday" = "7" ]
 then
    echo "It is $date on Weekend."
